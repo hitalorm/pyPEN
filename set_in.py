@@ -43,7 +43,7 @@ def set_particle_angle(buffer, new_z, radius_x):
     angle_x = round(angle_x,2)
 
 
-    new_angle = ' 0.0 ' + str("{0:.2f}".format(angle_x))+'                     DIRECTION POLAR'
+    new_angle = ' 0.0 ' + str("{0:.2f}".format(0.0))+'                     DIRECTION POLAR'
     buffer = re.sub(' 0.0 (.*?)                     DIRECTION POLAR',new_angle,buffer)
     return buffer
 

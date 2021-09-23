@@ -74,6 +74,17 @@ class TelaPython:
         AppFont = 'Any 16'
         
         layout = [
+            [sg.Text('Tipo de partícula', font=font)],
+            [sg.Radio('Elétron','kpar',key='electron', font=font),
+                     sg.Radio('Fóton','kpar',key='photon',default='photon', font=font),
+                     sg.Radio('Pósitron','kpar',key='positron', font=font)],
+            
+            [sg.Text('')],
+            [sg.Text('Energia',size=(7,0), font=font),
+                 sg.Slider(range=(10,1000),default_value=0,orientation='h',size =(30,20),key = 'sliderEnergy', font=font),
+                 sg.Text('keV',size=(8,1), font=font)],
+            
+            [sg.Text('')],
             [sg.Text('Número de Histórias',size=(20,0), font=font),
                  sg.Slider(range=(100,10000.0),
                            orientation='h',
@@ -82,17 +93,6 @@ class TelaPython:
                            key = 'sliderHist',
                            font = font),
                  sg.Text('milhares',size=(8,0), font=font)],
-            [sg.Text('')],
-            [sg.Text('Energia',size=(7,0), font=font),
-                 sg.Slider(range=(10,1000),default_value=0,orientation='h',size =(30,20),key = 'sliderEnergy', font=font),
-                 sg.Text('keV',size=(8,1), font=font)],
-            
-            [sg.Text('')],
-            [sg.Text('Tipo de partícula', font=font)],
-            [sg.Radio('Elétron','kpar',key='electron', font=font),
-                     sg.Radio('Fóton','kpar',key='photon',default='photon', font=font),
-                     sg.Radio('Pósitron','kpar',key='positron', font=font)],
-            
             [sg.Text('')],
             [sg.Text('Material', font=font1)],
                      
