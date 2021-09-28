@@ -8,7 +8,6 @@ Subrotina para alterar o arquivo de geometria
                 
                 Data: 2021/09/21
 '''
-import re
 
 
 def create_geometry_file(filename,thick):
@@ -16,8 +15,10 @@ def create_geometry_file(filename,thick):
     lines = file.readlines()
     file.close()
     geo_number = thick
-    lines[9] = lines[9].replace(lines[9][10:13], str(float(thick)))
-    file = open('run/cylinder.geo','w')
+    lines[6] = lines[6].replace(lines[6][10:15], str("{0:.3f}".format(thick)))
+    file = open('run/box.geo','w')
     for line in lines:
         file.write(line)
     file.close()
+
+create_geometry_file('run/box.geo',2)

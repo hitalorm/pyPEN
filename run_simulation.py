@@ -11,7 +11,7 @@ Subrotina para rodar a simulação automatizada
 import os
 import platform
 import subprocess
-import time
+from time import sleep
 
 
 def run(hist):
@@ -25,9 +25,10 @@ def run(hist):
         directory = os.getcwd()
         p = subprocess.Popen('./penEasy.x<penEasy.in>res.out', cwd = directory, shell=True)
     
-    time.sleep(15)
+    sleep(5)
     
     while p.poll() is None:
+        sleep(10)   
         file = open('res.out')
         lines = file.readlines()
         if lines[-1] == 'Have a nice day.\n':
@@ -38,7 +39,7 @@ def run(hist):
             lines2 = file2.readlines()
             print('Simulação '+ str("{0:.1f}".format(int(lines2[12][1:-2])*100/hist))+'% concluída')
         file.close()
-        time.sleep(10)
+        sleep(10)
         
     print('SIMULAÇÃO ACABOU\n')
     

@@ -21,7 +21,7 @@ estejam na mesma pasta:
 
 
 import PySimpleGUI as sg
-from matplotlib.pyplot import figure
+from matplotlib.pyplot import figure, cla, clf
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import graph
 _VARS = {'window':False,
@@ -43,61 +43,70 @@ def draw_figure(canvas, figura):
     
 def drawChart(canvas, figura,fig_agg,first):
     if first:
-        figura = figure(figsize = (6,4))
+        figura = figure(figsize = (12,4.25))
         first = False
+    
     else:
         fig_agg.get_tk_widget().pack_forget()
-    
-    graph.graph_SDD()
+        clf()
+        cla()
+    graph.graph_track()
+        
     fig_agg = draw_figure(canvas, figura)
         
     return fig_agg, figura, first
     
-def win_dose():
+def win_track():
     #Layout
     AppFont = 'Any 16'
 
     layout = [
-        [sg.Text('Tipo de partícula', font=font)],
-        [sg.Radio('Elétron','kpar',key='electron', font=font),
+        [sg.Text('Tipo de partícula', font=font),
+                 sg.Radio('Elétron','kpar',key='electron', font=font),
                  sg.Radio('Fóton','kpar',key='photon',default='photon', font=font),
                  sg.Radio('Pósitron','kpar',key='positron', font=font)],
 
         [sg.Text('',font = font2)],
-        [sg.Text('Energia',size=(7,0), font=font),
-             sg.Slider(range=(10,2000),default_value=0,orientation='h',size =(30,20),key = 'sliderEnergy', font=font),
-             sg.Text('keV',size=(8,1), font=font)],
+        [sg.Text('Energia',size=(10,0), font=font),
+                     sg.Slider(range=(10,2000),
+                               default_value=0,orientation='h',
+                               size =(25,20),key = 'sliderEnergy', font=font),
+            sg.Text('keV',size=(8,1), font=font),
 
-        [sg.Text('',font = font2)],
-        [sg.Text('Número de Histórias',size=(20,0), font=font),
-             sg.Slider(range=(100,10000.0),
+            sg.Text('   ',font = font2),
+        sg.Text('Número de Histórias',size=(10,0), font=font),
+             sg.Slider(range=(10,200.0),
                        orientation='h',
                        default_value=1,
-                       size =(30,20),
+                       size =(20,20),
                        key = 'sliderHist',
-                       font = font),
-             sg.Text('milhares',size=(8,0), font=font)],
+                       font = font)],
+         
+         
         [sg.Text('',font = font2)],
         [sg.Text('Material', font=font1)],
-
-        [sg.Radio('Acrílico',"mat",key='PMMA', font=font),
-                 sg.Radio('Adiposo',"mat",key='adipose', font=font),
-                 sg.Radio('Água',"mat",key='agua',default='agua', font=font),
-                 sg.Radio('Músculo',"mat",key='muscle', font=font),
-                 sg.Radio('Osso', 'mat', key='bone',font=font),
-                 sg.Radio('Pulmão','mat',key='lung',font=font),
-                 sg.Radio('Tecido Mole',"mat",key='soft', font=font)],
+         
+        [sg.Radio('Hidrogêneio',"mat",key='H', font=font),
+                 sg.Radio('Carbono',"mat",key='C', font=font),
+                 sg.Radio('Nitrogênio',"mat",key='N', font=font),
+                 sg.Radio('Oxigênio',"mat",key='O', font=font),
+                 sg.Radio('Alumínio',"mat",key='Al', font=font),
+                 sg.Radio('Prata',"mat",key='Ag', font=font),
+                 sg.Radio('Cobre',"mat",key='Cu',default='agua', font=font),
+                 sg.Radio('Molibdênio',"mat",key='Mo', font=font),
+                 sg.Radio('Chumbo', 'mat', key='Pb',font=font),
+                 sg.Radio('Tungstênio','mat',key='W',font=font)],
         [sg.Text('',font = font2)],
         [sg.Text('Espessura do cilindro',
                  size=(20,0), 
                  font=font),
-        sg.Slider(range=(1,5),
+        sg.Slider(range=(100,1000),
                   default_value=0,
                   orientation='h',
                   size =(15,20),
                   key = 'sliderThick',
                   font=font),
-        sg.Text('cm',size=(8,1), font=font)],
+        sg.Text('mm',size=(8,1), font=font)],
 
         [sg.Button('Simular', font=font1)],
         #[sg.Output(size=(40,15), font=font),
@@ -107,7 +116,7 @@ def win_dose():
 
 
     #Janela
-    return sg.Window('ANÁLISE DEPOSIÇÃO DE DOSE',
+    return sg.Window('TRACKING DE PARTÍCULAS',
                         layout,
                         finalize=True,
                         resizable=True,

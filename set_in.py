@@ -79,12 +79,27 @@ def set_seed(buffer, seed1, seed2):
 
 
 def set_tally_SDD(buffer,thick):
-    bins = thick/0.1-2
+    string = 'SPATIAL DOSE DISTRIB v.2009-06-15]\n ON '
+    buffer = re.sub('SPATIAL DOSE DISTRIB v.2009-06-15\]\n (.*?) ',string,buffer)
+    
+    bins = thick/0.1
     string = ' 0.0  '+str("{0:.1f}".format(thick))+'   '+str(int(bins))+'                   ZMIN'
     buffer = re.sub(' 0.0  (.*?)   (.*?)                   ZMIN',string,buffer)
+    
+    string = 'STRUCTURE v.2009-06-15]\n OFF '
+    buffer = re.sub('STRUCTURE v.2009-06-15]\n (.*?) ',string, buffer) 
     return buffer
 
-def set_in(filename, hist, update, new_z, energy, material, radius_x, name_geo, kpar, thick):
+
+def set_tally_track(buffer):
+    string = 'SPATIAL DOSE DISTRIB v.2009-06-15]\n OFF '
+    buffer = re.sub('SPATIAL DOSE DISTRIB v.2009-06-15\]\n (.*?) ',string,buffer)
+    
+    string = 'STRUCTURE v.2009-06-15]\n ON '
+    buffer = re.sub('STRUCTURE v.2009-06-15]\n (.*?) ',string, buffer) 
+    return buffer
+
+def set_in(filename, hist, update, new_z, energy, material, radius_x, name_geo, kpar, thick, dose, track):
     buffer = open_ini(filename)
     buffer = set_config(buffer, hist, update)
     buffer = set_particle_type(buffer,kpar)
@@ -93,5 +108,11 @@ def set_in(filename, hist, update, new_z, energy, material, radius_x, name_geo, 
     buffer = set_particle_angle(buffer, new_z,radius_x)
     buffer = set_geometry(buffer, name_geo)
     buffer = set_material(buffer, material)
-    buffer = set_tally_SDD(buffer, thick)
+    
+    if dose:
+        buffer = set_tally_SDD(buffer, thick)
+    elif track:
+        buffer = set_tally_track(buffer)
     write_file(buffer, filename)
+
+    

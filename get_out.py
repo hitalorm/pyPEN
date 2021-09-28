@@ -10,7 +10,8 @@ Subrotina para obter os resultados finais da simulação
 
 import pandas as pd
 import numpy as np
-import os 
+from os.path import isfile
+from scipy.integrate import trapz
 
 def open_SDD():
     col = ['xBinIndex','xLow(cm)','xMiddle(cm)','yBinIndex','yLow(cm)','yMiddle(cm)','zBinIndex',
@@ -49,7 +50,7 @@ def create_resultado(initial_dir):
 
 def get_out(hist, energy, material, p_type, thick, initial_dir):
     
-    data_exist = os.path.isfile(initial_dir + "/resultados/output.xlsx")
+    data_exist = isfile(initial_dir + "/resultados/output.xlsx")
     if data_exist:
         df = pd.read_excel(open(initial_dir + "/resultados/output.xlsx", 'rb'),
               sheet_name='resultados')
@@ -67,8 +68,12 @@ def get_out(hist, energy, material, p_type, thick, initial_dir):
     
     
     edp = open_edp()
-    df.at[i,'Energia depositada (keV)'] = float(edp['Energy'][0])/1e3
-    df.at[i,'Incerteza energia depositada (keV)'] = float(edp['+-2sigma'][0])/2e3
+    density = pd.read_csv('mat/density_mat.csv', names = None, delimiter = ',')
+    Name,Density = density.iloc[:,0].values, density.iloc[:,1].values
+    mass = 20**2*thick*Density[Name==material]
+    
+    df.at[i,'Dose total (eV/g/hist)'] = float(edp['Energy'][0])/mass
+    df.at[i,'Incerteza dose toal (eV/g/hist)'] = float(edp['+-2sigma'][0])/2/mass
     
     
     
@@ -77,6 +82,7 @@ def get_out(hist, energy, material, p_type, thick, initial_dir):
     sdd['zMiddle(cm)'] = pd.to_numeric(sdd['zMiddle(cm)'])
     sdd['dose'] = pd.to_numeric(sdd['dose'])
     
+    integra = trapz(sdd['dose'], dx=0.1, axis=-1)
     sdd = sdd.rename(columns={'zMiddle(cm)': 'Profundidade(cm)',
                               'dose': 'Dose (eV/g)',
                              '+-2sigma': 'Incerteza'})
@@ -111,4 +117,4 @@ def get_out(hist, energy, material, p_type, thick, initial_dir):
 #                  sheet_name='1')# + str(j+1))
 #print(df)
 
-#get_out(100000.0, 10.0, 'water', 2 ,1.0, '/home/hmendes/Dropbox/Doutorado/Interface Gráfica')
+#get_out(100000.0, 10.0, 'bone', 2 ,5, '/mnt/extra/Doutorado/Interface Gráfica/v1.0')
