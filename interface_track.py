@@ -60,7 +60,7 @@ def win_track():
     #Layout
     AppFont = 'Any 16'
 
-    layout = [
+    options = [
         [sg.Text('Tipo de partícula', font=font),
                  sg.Radio('Elétron','kpar',key='electron', font=font),
                  sg.Radio('Fóton','kpar',key='photon',default='photon', font=font),
@@ -68,9 +68,9 @@ def win_track():
 
         [sg.Text('',font = font2)],
         [sg.Text('Energia',size=(10,0), font=font),
-                     sg.Slider(range=(10,2000),
+                     sg.Slider(range=(10,20000),
                                default_value=0,orientation='h',
-                               size =(25,20),key = 'sliderEnergy', font=font),
+                               size =(60,20),key = 'sliderEnergy', font=font),
             sg.Text('keV',size=(8,1), font=font),
 
             sg.Text('   ',font = font2),
@@ -86,21 +86,32 @@ def win_track():
         [sg.Text('',font = font2)],
         [sg.Text('Material', font=font1)],
          
-        [sg.Radio('Hidrogêneio',"mat",key='H', font=font),
+        [sg.Radio('Hidrogênio',"mat",key='H', font=font),
                  sg.Radio('Carbono',"mat",key='C', font=font),
                  sg.Radio('Nitrogênio',"mat",key='N', font=font),
                  sg.Radio('Oxigênio',"mat",key='O', font=font),
                  sg.Radio('Alumínio',"mat",key='Al', font=font),
-                 sg.Radio('Prata',"mat",key='Ag', font=font),
-                 sg.Radio('Cobre',"mat",key='Cu',default='agua', font=font),
+                 sg.Radio('Cobre',"mat",key='Cu',default='Cu', font=font),
                  sg.Radio('Molibdênio',"mat",key='Mo', font=font),
-                 sg.Radio('Chumbo', 'mat', key='Pb',font=font),
-                 sg.Radio('Tungstênio','mat',key='W',font=font)],
+                 sg.Radio('Prata',"mat",key='Ag', font=font),
+                 sg.Radio('Tungstênio','mat',key='W',font=font),
+                 sg.Radio('Chumbo', 'mat', key='Pb',font=font)],
         [sg.Text('',font = font2)],
-        [sg.Text('Espessura do cilindro',
+        [sg.Text('Densidade do material',
                  size=(20,0), 
                  font=font),
-        sg.Slider(range=(100,1000),
+        sg.Slider(range=(1,20),
+                  default_value=0,
+                  orientation='h',
+                  size =(15,20),
+                  key = 'sliderDens',
+                  font=font),
+        sg.Text('g/cm³',size=(8,1), font=font),
+         sg.Text('\t',font = font2),
+         sg.Text('Espessura da caixa',
+                 size=(20,0), 
+                 font=font),
+        sg.Slider(range=(1,10),
                   default_value=0,
                   orientation='h',
                   size =(15,20),
@@ -108,11 +119,18 @@ def win_track():
                   font=font),
         sg.Text('mm',size=(8,1), font=font)],
 
-        [sg.Button('Simular', font=font1)],
+        [sg.Button('Simular', font=font1),sg.Button('Salvar Imagem', font=font1)],
         #[sg.Output(size=(40,15), font=font),
-        [sg.Canvas(key='figCanvas')],
+        #[sg.Canvas(key='figCanvas')],
         [sg.Text('by: Hitalo R. Mendes',justification='left')]
     ]
+    choices = [[sg.Frame('Parâmetros da simulação', layout= options)]]
+
+    output = [[sg.Frame('Output',layout=[[sg.Output(size=(25,15), font=font1)]])]]
+    
+    graph = [[sg.Frame('Grafico',layout=[[sg.Canvas(key='figCanvas')]])]]
+    
+    layout = [[sg.Column(choices,element_justification='left'),sg.Column(output,element_justification='c')],[sg.Column(graph,element_justification='c')]]
 
 
     #Janela

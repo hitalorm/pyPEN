@@ -8,21 +8,21 @@ Subrotina para rodar a simulação automatizada
                 Data: 2021/09/21
 '''
 
-import os
-import platform
+from os import chdir, getcwd
+from platform import system
 import subprocess
 from time import sleep
 
 
 def run(hist):
     #detect OS
-    OS = platform.system()
+    OS = system()
     
-    os.chdir('run')
+    chdir('run')
     if OS =='Windows':
         p = subprocess.Popen('penEasy.exe<penEasy.in>res.out', shell=True)
     else:
-        directory = os.getcwd()
+        directory = getcwd()
         p = subprocess.Popen('./penEasy.x<penEasy.in>res.out', cwd = directory, shell=True)
     
     sleep(5)

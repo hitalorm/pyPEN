@@ -65,18 +65,18 @@ def win_dose():
 
         [sg.Text('',font = font2)],
         [sg.Text('Energia',size=(7,0), font=font),
-             sg.Slider(range=(10,2000),default_value=0,orientation='h',size =(30,20),key = 'sliderEnergy', font=font),
+             sg.Slider(range=(10,20000),default_value=0,orientation='h',size =(60,20),key = 'sliderEnergy', font=font),
              sg.Text('keV',size=(8,1), font=font)],
 
         [sg.Text('',font = font2)],
         [sg.Text('Número de Histórias',size=(20,0), font=font),
-             sg.Slider(range=(100,10000.0),
+             sg.Slider(range=(1,200.0),
                        orientation='h',
                        default_value=1,
                        size =(30,20),
                        key = 'sliderHist',
                        font = font),
-             sg.Text('milhares',size=(8,0), font=font)],
+             sg.Text('x1e5',size=(8,0), font=font)],
         [sg.Text('',font = font2)],
         [sg.Text('Material', font=font1)],
 
@@ -88,7 +88,7 @@ def win_dose():
                  sg.Radio('Pulmão','mat',key='lung',font=font),
                  sg.Radio('Tecido Mole',"mat",key='soft', font=font)],
         [sg.Text('',font = font2)],
-        [sg.Text('Espessura do cilindro',
+        [sg.Text('Espessura da caixa',
                  size=(20,0), 
                  font=font),
         sg.Slider(range=(1,5),
@@ -99,12 +99,10 @@ def win_dose():
                   font=font),
         sg.Text('cm',size=(8,1), font=font)],
 
-        [sg.Button('Simular', font=font1)],
-        #[sg.Output(size=(40,15), font=font),
-        [sg.Canvas(key='figCanvas')],
+        [sg.Button('Simular', font=font1),sg.Button('Salvar Imagem', font=font1),sg.Button('Exportar gráfico como csv', font=font1)],
+        [sg.Canvas(key='figCanvas'),sg.Output(size=(40,15), font=font)],
         [sg.Text('by: Hitalo R. Mendes',justification='left')]
     ]
-
 
     #Janela
     return sg.Window('ANÁLISE DEPOSIÇÃO DE DOSE',

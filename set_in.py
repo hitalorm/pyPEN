@@ -10,7 +10,7 @@ da simualção
 '''
 import re
 import math
-import shutil
+
 
 def open_ini(filename):
     file = open(filename, 'r')

@@ -23,15 +23,17 @@ estejam na mesma pasta:
 import PySimpleGUI as sg
 import interface_dose as d
 import interface_track as t
-import matplotlib.pyplot as plt
 import set_in
 from create_geo import create_geometry_file
 import run_simulation as run
 import graph
 from os import getcwd, chdir, remove
-from get_out import get_out
-from time import sleep
+from get_out import export_sdd
+from change_density import change_density
 import webbrowser
+import os
+
+
 
 _VARS = {'window':False,
          'fig_agg': False,
@@ -59,15 +61,15 @@ def win_main():
         [sg.Text('Hitalo Rodrigues Mendes',font = font1)],
         [sg.Text('Grupo de Física Radiológica Médica',font = font1)],
         [sg.Text('Instituto de Física Gleb Wataghin',font = font1)],
-        [sg.Text('Universidade de Campinas',font = font1)],
+        [sg.Text('Universidade Estadual de Campinas',font = font1)],
 
 
         [sg.Text('',font = font)],
-        [sg.Text('Manual PENOLPE 2014', tooltip='google.com',
+        [sg.Text('Manual PENOLPE 2014',
                  enable_events=True,text_color='blue',
                  key='URL', font=("Arial", 16,'underline'))],
         
-        [sg.Text('penEasy 2015', tooltip='google.com',
+        [sg.Text('penEasy 2015',
                  enable_events=True,text_color='blue',
                  key='URL1', font=("Arial", 16,'underline'))],
         
@@ -121,17 +123,48 @@ while True:
         track = False
         #_VARS['fig_agg'] = d.drawChart(window2['figCanvas'].TKCanvas, _VARS['pltFig'])
         
-    if event == 'Simular':
+    elif event == 'Salvar Imagem':
+        MYDIR = ("resultados")
+        CHECK_FOLDER = os.path.isdir(MYDIR)
+
+        if not CHECK_FOLDER:
+            os.makedirs(MYDIR)
+
+        if not _VARS['pltFig']:
+            print('NENHUMA IMAGEM A SER SALVA')
+        elif _VARS['pltFig']:
+            if dose:
+                _VARS['pltFig'].savefig('resultados/dose_profundidade-hist='+str("{0:.1e}".format(hist*1e5)) + '_' + str(int(energy))+'keV_'+i + '_' + j+'_thick='+ str(thick)+'cm.png')
+
+            elif track:
+                _VARS['pltFig'].savefig('resultados/track-hist='+str(int(hist)) + '_' + 
+                                        str(int(energy))+'keV_'+i + '_' + j+'_thick='+ str(thick/10)+'cm_densidade=' + str(dens) + '.png')
+    
+            print('IMAGEM SALVA COM SUCESSO')
+        
+    elif event == 'Exportar gráfico como csv':
+        MYDIR = ("resultados")
+        CHECK_FOLDER = os.path.isdir(MYDIR)
+
+        if not CHECK_FOLDER:
+            os.makedirs(MYDIR)
+
+        if not _VARS['pltFig']:
+            print('NENHUM RESULTADO')
+        elif _VARS['pltFig']:
+            export_sdd(hist*1e5, energy, i,k+1,thick)
+            print('DADOS EXPORTADOS COM SUCESSO')
+
+    elif event == 'Simular':
         hist = values['sliderHist']
         energy = values['sliderEnergy']
         thick = values['sliderThick']
-
+        
         kpar = dict(
             electron = values['electron'],
             photon = values['photon'],
             positron = values['positron'],
         )
-        print(dose,track)
         if dose:
             material = dict(
                 PMMA=values['PMMA'],
@@ -167,16 +200,18 @@ while True:
         #configurando o arquivo penEasy.in
         #parametros:   filename, hist, update, new_z, energy, material, radius_x, name_geo,particle type, espessura cilindro
         if dose:
-            set_in.set_in('run/penEasy.in', hist*1e3, 3, 100, energy*1e3, i, 5, 'box.geo',k+1,thick, dose, track)
+            set_in.set_in('run/penEasy.in', hist*1e5, 3, 100, energy*1e3, i, 5, 'box.geo',k+1,thick, dose, track)
             create_geometry_file('run/box.geo',thick)
 
         elif track:
-            set_in.set_in('run/penEasy.in', hist, 10, 100, energy*1e3, i, 5, 'box.geo',k+1,thick/1000, dose, track)
-        #configurando o arquivo de geometria
-            create_geometry_file('run/box.geo',thick/1000)
+            dens = values['sliderDens']
 
+            set_in.set_in('run/penEasy.in', hist, 10, 100, energy*1e3, i, 5, 'box.geo',k+1,thick/10, dose, track)
+        #configurando o arquivo de geometria
+            create_geometry_file('run/box.geo',thick/10)
+            change_density('run/mat/'+i+'.mat',dens)
         print('INICIANDO SIMULAÇÃO')
-        run.run(hist*1e3)
+        run.run(hist*1e5)
 
         #atualizar gráfico de resposta
         if dose:
@@ -193,9 +228,7 @@ while True:
         #parametros: hist, energy, material, particle type, espessura cilindro:
         #get_out(hist*1e3, energy, i,k+1,thick,initial_dir)
         try:
-            remove('tallySpatialDoseDistrib-3D.dat')
             remove('tallyParticleTrackStructure.dat')
-            remove('tallyEnergyDeposition.dat')
         except OSError:
             pass
 

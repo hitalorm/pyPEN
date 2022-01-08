@@ -15,10 +15,11 @@ def create_geometry_file(filename,thick):
     lines = file.readlines()
     file.close()
     geo_number = thick
-    lines[6] = lines[6].replace(lines[6][10:15], str("{0:.3f}".format(thick)))
+    lines[6] = lines[6].replace(lines[6][10:31], str("{0:.15E}".format(thick)))
     file = open('run/box.geo','w')
     for line in lines:
         file.write(line)
     file.close()
 
-create_geometry_file('run/box.geo',2)
+#create_geometry_file('run/box.geo',20)
+#print(str("{0:.15E}".format(2)))
