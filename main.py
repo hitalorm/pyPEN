@@ -185,8 +185,14 @@ while True:
                 Cu=values['Cu'],
                 Mo=values['Mo'],
                 Pb=values['Pb'],
-                W=values['W'])
-            
+                W=values['W'],
+                PMMA_1=values['PMMA'],
+                adipose_1 = values['adipose'],
+                water_1 = values['agua'],
+                muscle_1 = values['muscle'],
+                bone_1 = values['bone'],
+                lung_1 = values['lung'],
+                soft_1 = values['soft'])
         for i in material:
             if material[i]:
                 break

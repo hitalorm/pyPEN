@@ -43,7 +43,7 @@
 #   documentation (see ~/documentation/*).
 
 [SECTION CONFIG v.2013-03-18]
- 1.0e+07             NUMBER OF HISTORIES (1.0e15 MAX)
+ 4.7e+01             NUMBER OF HISTORIES (1.0e15 MAX)
  1.0e30            ALLOTTED TIME (s) (+ FOR REAL TIME; - FOR CPU TIME)
  10.0             UPDATE INTERVAL (s)
  1  1              INITIAL RANDOM SEEDS
@@ -76,14 +76,14 @@
  0                               SOURCE MATERIAL (0=DON'T CARE, >0 FOR LOCAL SOURCE, <0 FOR IN-FIELD BEAM)
   SUBSECTION FOR PARTICLE DIRECTION:
  0.0  0.0  1.0                   DIRECTION VECTOR; NO NEED TO NORMALIZE
- 0.0 2.86                     DIRECTION POLAR ANGLE INTERVAL [THETA0,THETA1], BOTH VALUES IN [0,180]deg
+ 0.0 0.00                     DIRECTION POLAR ANGLE INTERVAL [THETA0,THETA1], BOTH VALUES IN [0,180]deg
  0.0 360.0                       DIRECTION AZIMUTHAL ANGLE INTERVAL PHI0 IN [0,360)deg AND DeltaPHI IN [0,360]deg
  1                               APPLY ALSO TO DIRECTION THE ROTATION USED FOR BOX POSITION (0=NO, 1=YES)
   SUBSECTION FOR PARTICLE ENERGY:
  -                               ENERGY SPECTRUM FILE NAME; ENTER '-' TO ENTER SPECTRUM IN NEXT LINES
  Energy(eV)  Probability         DUMMY SPECTRUM HEADER LINE; REMOVE HEADER AND TABLE IF A FILENAME WAS PROVIDED ABOVE
- 1.000e+04      1.0                   Spectrum table, arbitrary normalization. Example: a single channel [10,10]MeV of null width
- 1.000e+04      -1                    Enter a negative prob. to signal the end of the table
+ 1.311e+06      1.0                   Spectrum table, arbitrary normalization. Example: a single channel [10,10]MeV of null width
+ 1.311e+06      -1                    Enter a negative prob. to signal the end of the table
  0.0                             FWHM(eV) OF GAUSSIAN ENERGY DISTRIB. [NOTE FWHM=SIGMA*sqrt(8*ln(2))]
 [END OF BIGS SECTION]
 
@@ -116,7 +116,7 @@
 #   in the documentation (please refer to ~/documentation/*).
 
 [SECTION PENGEOM+PENVOX v.2009-06-15]
- cylinder.geo                     QUADRICS FILE NAME, USE '-' IF NONE
+ box.geo                          QUADRICS FILE NAME, USE '-' IF NONE
  -                               VOXELS FILE NAME, USE '-' IF NONE
  1                               TRANSPARENT QUADRIC MAT (USED ONLY IF QUAD&VOX)
  10                              GRANULARITY TO SCAN VOXELS (USED ONLY IF QUAD&VOX)
@@ -150,7 +150,7 @@
 
 [SECTION PENELOPE v.2009-10-01]
  MAT# FILE___(max 20 char) EABS(e-)  EABS(ph)  EABS(e+)  C1    C2    WCC      WCR      DSMAX   COMMENTS
-  1   mat/water.mat          50.0e3    1.00e3    50.0e3   0.3   0.3   100.0e3  10.00e3  1.0e30  water
+  1   mat/water_1.mat          5.00e3    5.00e3    5.00e3   0.2   0.2   100.0e3  10.00e3  1.0e30  water
   0 (SET MAT=0 TO END LIST)
 [END OF PEN SECTION]
 
@@ -191,10 +191,10 @@
 [END OF VDD SECTION]
 
 [SECTION TALLY SPATIAL DOSE DISTRIB v.2009-06-15]
- ON                              STATUS (ON or OFF)
- -1   1     1                    XMIN,XMAX(cm),NXBIN (0 FOR DX=infty)
- -1   1     1                    YMIN,YMAX(cm),NYBIN (0 FOR DY=infty)
- 0.0  1.0   8                   ZMIN,ZMAX(cm),NZBIN (0 FOR DZ=infty)
+ OFF                             STATUS (ON or OFF)
+ -10  10    1                     XMIN,XMAX(cm),NXBIN (0 FOR DX=infty)
+ -10  10    1                    YMIN,YMAX(cm),NYBIN (0 FOR DY=infty)
+ 0.0  2.0   20                   ZMIN,ZMAX(cm),NZBIN (0 FOR DZ=infty)
  1                               PRINT COORDINATES IN REPORT (1=YES,0=NO,-1=NO&BINARYFORMAT)
  0.0                             RELATIVE UNCERTAINTY (%) REQUESTED
 [END OF SDD SECTION]
@@ -264,8 +264,8 @@
 [END OF PCS SECTION]
 
 [SECTION TALLY PARTICLE TRACK STRUCTURE v.2009-06-15]
- OFF                             STATUS (ON or OFF)
- 100                             NUMBER OF HISTORIES TO DISPLAY (~100 RECOMMENDED)
+ ON                              STATUS (ON or OFF)
+ 200                             NUMBER OF HISTORIES TO DISPLAY (~100 RECOMMENDED)
 [END OF PTS SECTION]
 
 
