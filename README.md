@@ -5,7 +5,7 @@ Este programa é uma interface gráfica para realizar simulações Monte Carlo f
 As simulações são realizadas usando um código PENELOPE versão 2014 com a extensão penEasy versão 2015.
 
 Uma explicação mais detalhada do programa e seu funcionamento está presente no artigo: "pyPEN: uma interface gráfica user-friendly para simulação Monte Carlo em física médica"
-https://www.scielo.br/j/rbef/a/w33R7jZWq6YML46x63frHKj/?lang=pt
+https://doi.org/10.1590/1806-9126-RBEF-2022-0006
 
 Devido a limitação de 25 MB do Github o executável para Windows 32 e 64 bit estão no Google Drive na pasta:
 https://drive.google.com/drive/folders/1w0tEvP2eqcNw6eaLy8BiISVgC_zFokaL?usp=sharing
@@ -37,7 +37,7 @@ A Figura abaixo mostra a tela da interface no modo "Tracking de Partículas".
 
 Com o uso da interface gráfica é possível selecionar o tipo de partícula a ser simulada (elétron, fóton ou pósitron) e o número de partícula iniciais (número de histórias). A geometria de simulação é similar ao caso de "Deposição de Dose" com as diferenças sendo a espessura da caixa, agora variando de 1 a 10 mm. Além disso, os materiais possíveis para este caso são elementos puros, sendo possível alterar a sua densidade de 1 a 20 g/cm³.
 
-Uma vez selecionados os par^ametros da simulação, clique em "Simular" a mensagem "INICIANDO SIMULAÇÃO" irá aparecer, quando a simulação terminar aparecerá a mensagem "SIMULAÇÂO ACABOU". E imediatamente após o término da simulação aparecerão três gráficos mostrando a trajetória dos elétrons, fótons ou pósitrons nas simulações. Para salvar os gráfcios no formato PNG clique em "Salvar Imagem".
+Uma vez selecionados os parâmetros da simulação, clique em "Simular" a mensagem "INICIANDO SIMULAÇÃO" irá aparecer, quando a simulação terminar aparecerá a mensagem "SIMULAÇÂO ACABOU". E imediatamente após o término da simulação aparecerão três gráficos mostrando a trajetória dos elétrons, fótons ou pósitrons nas simulações. Para salvar os gráfcios no formato PNG clique em "Salvar Imagem".
 
 
 ## 3 INFORMAÇÕES IMPORTANTES AO RODAR AS SIMULAÇÕES
