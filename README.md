@@ -10,6 +10,15 @@ https://doi.org/10.1590/1806-9126-RBEF-2022-0006
 Devido a limitação de 25 MB do Github o executável para Windows 32 e 64 bit estão no Google Drive na pasta:
 https://drive.google.com/drive/folders/1w0tEvP2eqcNw6eaLy8BiISVgC_zFokaL?usp=sharing
 
+INFORMAÇÕES IMPORTANTES AO RODAR AS SIMULAÇÕES
+
+- Para esta interface funcionar corretamente deve estar sempre acompanhada da pasta ***run***;
+- Não altere nenhum arquivo da pasta **run**;
+- Quanto maior o número de histórias mais longa será a simulação;
+- Simular elétrons e pósitrons é mais demorado do que simular fótons, portanto, leve isso em conta
+ao selecionar o número de histórias.
+
+# Descrição
 A Figura abaixo mostra a interface gráfica ao ser iniciada.
 
 <p align="center">
@@ -40,16 +49,10 @@ Com o uso da interface gráfica é possível selecionar o tipo de partícula a s
 Uma vez selecionados os parâmetros da simulação, clique em "Simular" a mensagem "INICIANDO SIMULAÇÃO" irá aparecer, quando a simulação terminar aparecerá a mensagem "SIMULAÇÂO ACABOU". E imediatamente após o término da simulação aparecerão três gráficos mostrando a trajetória dos elétrons, fótons ou pósitrons nas simulações. Para salvar os gráfcios no formato PNG clique em "Salvar Imagem".
 
 
-## 3 INFORMAÇÕES IMPORTANTES AO RODAR AS SIMULAÇÕES
-
- Para esta interface funcionar corretamente deve estar sempre acompanhada da pasta ***run***;
- Não altere nenhum arquivo da pasta **run**;
- Quanto maior o número de histórias mais longa será a simulação;
- Simular elétrons e pósitrons é mais demorado do que simular fótons, portanto, leve isso em conta
-ao selecionar o número de histórias.
 
 
-**ReferÊncias**
+
+## Referências
 
 1. Salvat, F., Fernández-Varea, J. M. & Sempau, J. PENELOPE-2014: A code system for Monte Carlo simulation of electron and photon transport em the Workshop Proceedings, June (2014).
 2. Badal Soler, A. Development of advanced geometric models and acceleration techniques for Monte Carlo simulation in Medical Physics (Universitat Politècnica de Catalunya, 2008).
