@@ -1,10 +1,10 @@
 # Interface grafica PENELOPE
 
 
-Este programa é uma interface gráfica para realizar simulações Monte Carlo focado no ensino de Física das Radiações.
+Este programa é uma interface gráfica para realizar simulações Monte Carlo focado no ensino de **Física das Radiações**.
 As simulações são realizadas usando um código PENELOPE versão 2014 com a extensão penEasy versão 2015.
 
-Uma explicação mais detalhada do programa e seu funcionamento está presente no artigo: "pyPEN: uma interface gráfica user-friendly para simulação Monte Carlo em física médica"
+Uma explicação mais detalhada do programa e seu funcionamento está presente no artigo: *"pyPEN: uma interface gráfica user-friendly para simulação Monte Carlo em física médica"*
 https://doi.org/10.1590/1806-9126-RBEF-2022-0006
 
 Devido a limitação de 25 MB do Github o executável para Windows 32 e 64 bit estão no Google Drive na pasta:
