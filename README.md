@@ -4,10 +4,11 @@
 Este programa é uma interface gráfica para realizar simulações Monte Carlo focado no ensino de Física das Radiações.
 As simulações são realizadas usando um código PENELOPE versão 2014 com a extensão penEasy versão 2015.
 
-Uma explicação detalhada do programa e seu funcionamento está presente no artigo: "pyPEN: uma interface gráfica user-friendly para simulação Monte Carlo em física médica"
-
+Uma explicação mais detalhada do programa e seu funcionamento está presente no artigo: "pyPEN: uma interface gráfica user-friendly para simulação Monte Carlo em física médica"
 https://www.scielo.br/j/rbef/a/w33R7jZWq6YML46x63frHKj/?lang=pt
 
+Devido a limitação de 25 MB do Github o executável para Windows 32 e 64 bit estão no Google Drive na pasta:
+https://drive.google.com/drive/folders/1w0tEvP2eqcNw6eaLy8BiISVgC_zFokaL?usp=sharing
 
 A Figura abaixo mostra a interface gráfica ao ser iniciada.
 
@@ -53,4 +54,3 @@ ao selecionar o número de histórias.
 1. Salvat, F., Fernández-Varea, J. M. & Sempau, J. PENELOPE-2014: A code system for Monte Carlo simulation of electron and photon transport em the Workshop Proceedings, June (2014).
 2. Badal Soler, A. Development of advanced geometric models and acceleration techniques for Monte Carlo simulation in Medical Physics (Universitat Politècnica de Catalunya, 2008).
 3. Berger, M. et al. XCOM: Photon cross sections on a personal computer rel. técn. (National Bureau of Standards, Washington, DC (USA). Center for Radiation Research, 2010).
-O executável para Windows: https://drive.google.com/file/d/1YUrdKLbMRGNZhF5aVkr7je4U2rcBuPcR/view?usp=sharing
