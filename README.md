@@ -28,7 +28,7 @@ A Figura abaixo mostra a interface gráfica ao ser iniciada.
 Nesta tela estão links para o Manual do PENELOPE 2014 [1] e também do penEasy 2015 [2]. É possível escolher dois tipos de simulação: "Deposição de dose" e "Tracking de partículas".
 
 
-## Modo Deposição de dose
+## Modo Deposição de Dose
 A Figura abaixo mostra a tela da interface no modo "Deposição de Dose".
 
 <p align="center">
