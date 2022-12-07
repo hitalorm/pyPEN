@@ -18,7 +18,7 @@ INFORMAÇÕES IMPORTANTES AO RODAR AS SIMULAÇÕES
 - Simular elétrons e pósitrons é mais demorado do que simular fótons, portanto, leve isso em conta
 ao selecionar o número de histórias.
 
-# Descrição
+# Funcionamento da Interface
 A Figura abaixo mostra a interface gráfica ao ser iniciada.
 
 <p align="center">
@@ -28,7 +28,7 @@ A Figura abaixo mostra a interface gráfica ao ser iniciada.
 Nesta tela estão links para o Manual do PENELOPE 2014 [1] e também do penEasy 2015 [2]. É possível escolher dois tipos de simulação: "Deposição de dose" e "Tracking de partículas".
 
 
-## 1. Deposição de dose
+## Modo Deposição de dose
 A Figura abaixo mostra a tela da interface no modo "Deposição de Dose".
 
 <p align="center">
@@ -40,15 +40,13 @@ Com o uso da interface gráfica é possível selecionar o tipo de partícula a s
 Uma vez selecionados os parâmetros da simulação, clique em "Simular", a mensagem "INICIANDO SIMULACÃO" irá aparecer, quando a simulação terminar aparecerá a mensagem "SIMULAÇÃO ACABOU". E imediatamente após o término da simulação aparecerá um gráfico da dose em profundidade. A dose em profundidade foi obtida subdividindo a caixa em fatias e determinando a dose depositada em cada fatia. Acima do gráfico é mostrada da dose média depositada em todo o objeto. Todas as doses estão em unidade de eV/g/história. Para salvar o gráfico no formato PNG clique em "Salvar Imagem" e para extrair os dados usados para gerar o gráfico clique em "Exportar gráfico como csv". Em ambos os casos o arquivo será salvo na pasta ***resultados***.
 
 
-## Tracking de partículas
+## Modo Tracking de partículas
 
 A Figura abaixo mostra a tela da interface no modo "Tracking de Partículas".
 
 Com o uso da interface gráfica é possível selecionar o tipo de partícula a ser simulada (elétron, fóton ou pósitron) e o número de partícula iniciais (número de histórias). A geometria de simulação é similar ao caso de "Deposição de Dose" com as diferenças sendo a espessura da caixa, agora variando de 1 a 10 mm. Além disso, os materiais possíveis para este caso são elementos puros, sendo possível alterar a sua densidade de 1 a 20 g/cm³.
 
 Uma vez selecionados os parâmetros da simulação, clique em "Simular" a mensagem "INICIANDO SIMULAÇÃO" irá aparecer, quando a simulação terminar aparecerá a mensagem "SIMULAÇÂO ACABOU". E imediatamente após o término da simulação aparecerão três gráficos mostrando a trajetória dos elétrons, fótons ou pósitrons nas simulações. Para salvar os gráfcios no formato PNG clique em "Salvar Imagem".
-
-
 
 
 
